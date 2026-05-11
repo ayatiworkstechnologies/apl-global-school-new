@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import AboutGraph from "/assets/about-graph.svg";
-import DepartmentIMg from "/assets/apl/Department.webp";
-import SynergySection from "../About/SynergySection";
-import APLVAlue1 from "../others/AplValue1";
 
-import StaticBanner from "../../components/StaticBanner";
+import StaticBanner from "../../../components/StaticBanner";
 
-import banner1 from "/banners/apl-department.jpg";
-import mobile1 from "/banners/Department-mob.webp";
+
 import AplEventsShowcase from "../Home/AplEventsShowcase";
 import CertificatesCarousel from "../Home/CertificatesCarousel";
-const slides = [{ desktop: banner1, mobile: mobile1 }];
+import APLVAlue1 from "../others/AplValue1";
+const slides = [{ desktop: "/banners/apl-department.jpg", mobile: "/banners/Department-mob.webp"}];
 const customCards = [
   { date: "3rd & 4th August 2023", title: "SYNERGY\nBYTES", href: "#" },
   { date: "19th & 20th July 2024", title: "APL MUN\n2024", href: "#" },
@@ -33,7 +28,7 @@ function Department() {
       {/* Introduction Section */}
       <section
         className="bg-cover bg-center bg-no-repeat w-full"
-        style={{ backgroundImage: `url(${AboutGraph})` }}
+        style={{ backgroundImage: `url(${"/assets/about-graph.svg"})` }}
       >
         <div className="py-10 px-4 sm:px-6 md:px-16 max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
@@ -77,7 +72,7 @@ function Department() {
             </div>
             <div className="flex justify-center md:justify-end">
               <img
-                src={DepartmentIMg}
+                src={"/assets/apl/Department.webp"}
                 alt="APL DepartmentIMg"
                 className="w-full max-w-[350px] h-auto"
               />
@@ -89,7 +84,7 @@ function Department() {
       {/* Content Sections */}
       <section
         className="bg-cover bg-center bg-no-repeat w-full py-10 px-4 sm:px-6 md:px-12"
-        style={{ backgroundImage: `url(${AboutGraph})` }}
+        style={{ backgroundImage: `url(${"/assets/about-graph.svg"})` }}
       >
         <div className="max-w-6xl mx-auto space-y-10 text-sm sm:text-base">
           <div className="space-y-4">
@@ -219,7 +214,7 @@ function Department() {
       {/* Senior Level Section */}
       <section
         className="bg-cover bg-center bg-no-repeat w-full py-10 px-4 sm:px-6 md:px-12"
-        style={{ backgroundImage: `url(${AboutGraph})` }}
+        style={{ backgroundImage: `url(${"/assets/about-graph.svg"})` }}
       >
         <div className="max-w-6xl mx-auto">
           <p className="text-black font-secondary leading-relaxed">

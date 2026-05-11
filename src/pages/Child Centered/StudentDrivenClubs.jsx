@@ -1,20 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import AboutGraph from "/assets/about-graph.svg";
-import Student from "/assets/apl/Student.webp";
+
+
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md"; // updated icon
-import SynergySection from "../About/SynergySection";
-import APLVAlue4 from "../others/AplValue4";
+
 import APLVAlue5 from "../others/AplValue5";
 
-import StaticBanner from "../../components/StaticBanner";
+import StaticBanner from "../../../components/StaticBanner";
 
-import banner1 from "/banners/apl-student-driven.jpg";
-import mobile1 from "/banners/student-driven-mob.webp";
+
 import AplEventsShowcase from "../Home/AplEventsShowcase";
 import CertificatesCarousel from "../Home/CertificatesCarousel";
-const slides = [{ desktop: banner1, mobile: mobile1 }];
+const slides = [{ desktop: "/banners/apl-student-driven.jpg", mobile: "/banners/student-driven-mob.webp" }];
 const curriculumData = [
   {
     title: "Girl up club",
@@ -60,7 +57,7 @@ function StudentDrivenClub() {
       {/* Intro Section */}
       <section
         className="relative w-full py-16 px-4 sm:px-6 md:px-10 overflow-hidden"
-        style={{ backgroundImage: `url(${AboutGraph})` }}
+        style={{ backgroundImage: `url(${"/assets/about-graph.svg"})` }}
       >
         <div className="relative z-10 max-w-6xl mx-auto ">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
@@ -89,7 +86,7 @@ function StudentDrivenClub() {
 
             <div className="flex justify-center md:justify-end">
               <img
-                src={Student}
+                src={"/assets/apl/Student.webp"}
                 alt="Student"
                 className="w-full max-w-[350px] h-auto"
               />
@@ -100,7 +97,7 @@ function StudentDrivenClub() {
 
       {/* Accordion Section */}
       <section
-        style={{ backgroundImage: `url(${AboutGraph})` }}
+        style={{ backgroundImage: `url(${"/assets/about-graph.svg"})` }}
         className="relative w-full py-16 px-4 sm:px-6 md:px-10 overflow-hidden"
       >
         <div className="p-4 sm:p-6 md:p-10 max-w-6xl mx-auto text-left space-y-6">

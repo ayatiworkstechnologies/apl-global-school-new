@@ -2,9 +2,6 @@ import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Quote } from "lucide-react";
 
-import AboutGraph from "/assets/graph2.webp";
-import Alumni from "/assets/Alumni.webp";
-import PaperBg from "/assets/paper-bg.webp";
 
 const images = ["/assets/Our-Alumni.webp", "/assets/Our-Alumni.webp"];
 const imagesMobile = [
@@ -12,7 +9,6 @@ const imagesMobile = [
   "/assets/Our-Alumni-mob.webp",
 ];
 
-import SynergySection from "./SynergySection";
 import AplEventsShowcase from "../Home/AplEventsShowcase";
 import CertificatesCarousel from "../Home/CertificatesCarousel";
 
@@ -201,7 +197,7 @@ export default function OurAlumini() {
       {/* Info Section */}
       <section
         className=" max-w-8xl mx-auto overflow-hidden bg-cover bg-center bg-no-repeat w-full"
-        style={{ backgroundImage: `url(${AboutGraph})` }}
+        style={{ backgroundImage: `url(${"/assets/graph2.webp"})` }}
       >
         <div className="py-12 px-4 sm:px-8 md:px-16">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-top">
@@ -230,7 +226,7 @@ export default function OurAlumini() {
             </div>
             <div className="flex justify-center md:justify-end">
               <img
-                src={Alumni}
+                src={"/assets/Alumni.webp"}
                 alt="Alumni"
                 className="w-full max-w-[350px] h-auto object-cover rounded-lg"
               />
@@ -243,7 +239,7 @@ export default function OurAlumini() {
 
       <section
         className=" max-w-8xl mx-auto overflow-hidden flex flex-col md:flex-row gap-6 px-4 py-10 sm:px-6 md:px-12 md:py-16"
-        style={{ backgroundImage: `url(${PaperBg})`, backgroundSize: "cover" }}
+        style={{ backgroundImage: `url(${"/assets/paper-bg.webp"})`, backgroundSize: "cover" }}
       >
         {/* Alumni List */}
         <div className="md:w-1/3 w-full md:max-h-[270px] overflow-x-auto md:overflow-y-auto flex md:flex-col gap-4 pb-4 md:pb-0 md:pr-6 scrollbar-hide">

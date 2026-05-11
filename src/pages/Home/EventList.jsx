@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { CalendarDays, Clock } from 'lucide-react';
-import EventImage1 from '/assets/event-1.png';
-import EventImage2 from '/assets/event-2.png';
+
 
 
 const Events = [
@@ -16,7 +15,7 @@ const Events = [
       'https://i.pravatar.cc/32?img=13',
     ],
     moreCount: 40,
-    image: EventImage2,
+    image: '/assets/event-2.png',
   },
   {
     id: 2,
@@ -29,7 +28,7 @@ const Events = [
       'https://i.pravatar.cc/32?img=16',
     ],
     moreCount: 40,
-    image: EventImage1,
+    image: '/assets/event-1.png',
   }
 ];
 

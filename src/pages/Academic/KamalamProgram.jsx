@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import AboutGraph from "/assets/about-graph.svg";
-import Essential from "/assets/EssentialSupport.webp";
-import SynergySection from "../About/SynergySection";
+
 import CertificatesCarousel from "../Home/CertificatesCarousel";
 import AplEventsShowcase from "../Home/AplEventsShowcase";
 const customCards = [
@@ -59,7 +57,7 @@ function KamalamProgram() {
       {/* Kamalam Content Section */}
       <section
         className="bg-cover bg-center bg-no-repeat w-full"
-        style={{ backgroundImage: `url(${AboutGraph})` }}
+        style={{ backgroundImage: `url(${"/assets/about-graph.svg"})` }}
       >
         <div className="py-12 px-4 sm:px-6 md:px-12 lg:px-20 xl:px-32">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
@@ -89,7 +87,7 @@ function KamalamProgram() {
             {/* Right Image */}
             <div className="hidden md:flex justify-end sticky top-24 h-fit">
               <img
-                src={Essential}
+                src={"/assets/EssentialSupport.webp"}
                 alt="APL Vision"
                 className="w-full max-w-[350px] h-auto"
               />

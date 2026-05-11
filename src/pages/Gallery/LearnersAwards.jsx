@@ -1,15 +1,10 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
 
-// Images
-import trophyIcon from "/assets/trophy.png"; // Icon image
 
-import banner1 from "/banners/apl-learner-awards.jpg";
-import mobile1 from "/banners/learner-awards-mob.webp";
-import StaticBanner from "../../components/StaticBanner";
+import StaticBanner from "../../../components/StaticBanner";
 
-const slides = [{ desktop: banner1, mobile: mobile1 }];
-// ✅ Banner images array
+const slides = [{ desktop: "/banners/apl-learner-awards.jpg", mobile: "/banners/learner-awards-mob.webp" }];
 
 
 // ✅ Sample Awards Data (replace with real data)
@@ -60,7 +55,7 @@ export default function LearnersAwards() {
       {/* ✅ Title Section */}
       <div className="text-center mb-10">
         <img
-          src={trophyIcon}
+          src={"/assets/trophy.png"}
           alt="Trophy Icon"
           className="mx-auto w-14 h-14 mb-3"
         />

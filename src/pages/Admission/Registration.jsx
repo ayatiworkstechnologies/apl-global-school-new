@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import AboutGraph from "/assets/about-graph.svg";
 import { MdDoubleArrow } from "react-icons/md";
 
 import ContactFormTabs from "./ContactForm";
@@ -49,7 +48,7 @@ function Registration() {
     <>
       <section
         className="py-12 px-4 sm:px-6 md:px-10"
-        style={{ backgroundImage: `url(${AboutGraph})` }}
+        style={{ backgroundImage: `url(${"/assets/about-graph.svg"})` }}
       >
         <div className="max-w-6xl mx-auto text-left space-y-6">
           <h2 className="text-3xl sm:text-4xl font-extrabold text-primary font-primary inline-block border-b-2 border-secondary mb-4">

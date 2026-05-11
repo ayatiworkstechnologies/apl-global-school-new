@@ -4,19 +4,12 @@ import "swiper/css";
 import "swiper/css/pagination";
 import Marquee from "react-fast-marquee";
 
-import ucasImage from "/assets/ucas-banner.webp";
-import paper from "/assets/grid-1.webp";
-import sliderImg from "/assets/sliderImg.webp";
-import slider2 from "/assets/slide-2.webp";
-import slider3 from "/assets/slide-3.webp";
-import slider4 from "/assets/slide-4.webp";
-import slider5 from "/assets/slide-5.webp";
 
 export default function SynergySection() {
   return (
     <section
       className="relative w-full py-16 px-4 sm:px-6 md:px-10 overflow-hidden"
-      style={{ backgroundImage: `url(${paper})`, backgroundSize: "cover" }}
+      style={{ backgroundImage: `url(${"/assets/grid-1.webp"})`, backgroundSize: "cover" }}
     >
       <div className="relative z-10 max-w-6xl mx-auto">
         {/* ✅ Marquee Full Width with PDF Buttons */}
@@ -67,7 +60,7 @@ export default function SynergySection() {
           <div className="md:absolute md:right-4 lg:right-16 md:top-1/2 md:-translate-y-1/2 w-full sm:w-[280px] md:w-[320px] mx-auto md:mx-0">
             <div
               className="w-full h-[340px] sm:h-[380px] md:h-[400px] bg-center bg-contain bg-no-repeat flex items-center justify-center"
-              style={{ backgroundImage: `url(${ucasImage})` }}
+              style={{ backgroundImage: `url(${"/assets/ucas-banner.webp"})` }}
             >
               <Swiper
                 modules={[Pagination, Autoplay]}
@@ -78,35 +71,35 @@ export default function SynergySection() {
               >
                 <SwiperSlide>
                   <img
-                    src={sliderImg}
+                    src={"/assets/sliderImg.webp"}
                     alt="Slide 1"
                     className="w-full h-full object-contain rounded"
                   />
                 </SwiperSlide>
                 <SwiperSlide>
                   <img
-                    src={slider2}
+                    src={"/assets/slide-2.webp"}
                     alt="Slide 2"
                     className="w-full h-full object-contain rounded"
                   />
                 </SwiperSlide>
                 <SwiperSlide>
                   <img
-                    src={slider3}
+                    src={"/assets/slide-3.webp"}
                     alt="Slide 3"
                     className="w-full h-full object-contain rounded"
                   />
                 </SwiperSlide>
                 <SwiperSlide>
                   <img
-                    src={slider4}
+                    src={"/assets/slide-4.webp"}
                     alt="Slide 4"
                     className="w-full h-full object-contain rounded"
                   />
                 </SwiperSlide>
                 <SwiperSlide>
                   <img
-                    src={slider5}
+                    src={"/assets/slide-5.webp"}
                     alt="Slide 5"
                     className="w-full h-full object-contain rounded"
                   />

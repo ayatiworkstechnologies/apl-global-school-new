@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import studentImg from "/assets/ContantBanner.webp";
 
 const tabs = [
   { id: "general", label: "GENERAL INFORMATION" },
@@ -205,7 +204,7 @@ export default function ContactFormTabs() {
 
           <div className="hidden md:flex justify-center items-center">
             <img
-              src={studentImg}
+              src={"/assets/ContantBanner.webp"}
               alt="Student"
               className="h-full object-contain"
             />
