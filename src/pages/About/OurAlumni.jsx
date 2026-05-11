@@ -151,7 +151,8 @@ const alumniTestimonials = [
   },
 ];
 
-export default function OurAlumini() {
+export default function OurAlumni() {
+  
   const [imageIndex, setImageIndex] = useState(0);
   const [selected, setSelected] = useState(alumniTestimonials[0]);
 

@@ -2,11 +2,10 @@
 import React from "react";
 
 export default function AplEventsShowcase({
-  bgUrl = "/assets/apl-event-bg.png", // full background (cover)
-  rightImg, // your cutout PNG on the right
-  rightImgAlt = "APL student",
-  cards = defaultCards, // uses defaultCards unless you pass your own
-  showTopTorn = false,
+  bgUrl="/assets/apl-event-bg.png",
+  rightImg="/assets/event-boy.png",
+  rightImgAlt="APL student",
+  cards=[],
 }) {
   return (
     <section className="relative w-full overflow-hidden py-16 px-4 sm:px-6 md:px-10">
