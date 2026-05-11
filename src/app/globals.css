@@ -1,0 +1,78 @@
+@config "../../tailwind.config.js";
+@import url("https://fonts.googleapis.com/css2?family=YourFont&display=swap");
+@import "tailwindcss";
+@import "swiper/css";
+@import "swiper/css/navigation";
+@import "swiper/css/pagination";
+
+
+@font-face {
+  font-family: "Agatho";
+  src: url("/assets/fonts/Agatho_Bold.otf") format("opentype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gill Sans";
+  src: url("/assets/fonts/Gill_Sans.otf") format("opentype");
+  font-display: swap;
+}
+
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer components {
+  .input {
+    @apply w-full px-4 py-2 rounded-md bg-primary/90 placeholder-white text-white outline-none border-none focus:outline-none focus:ring-0;
+  }
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #aaa;
+  border-radius: 4px;
+}
+
+.group:hover .icon-chevron {
+  transform: rotate(180deg);
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+select {
+  outline: none;
+}
+textarea {
+  outline: none;
+}
