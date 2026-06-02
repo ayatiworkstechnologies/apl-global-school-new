@@ -1,6 +1,6 @@
 "use client";
 
-import AcademicForm from "@/pages/Careers/Academic";
+import AcademicForm from "@/pages/careers/Academic";
 
 
 

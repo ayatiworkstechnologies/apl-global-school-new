@@ -4,18 +4,23 @@ const BASE_URL = "https://www.aplglobalschool.com/api";
 
 const api = axios.create({
   baseURL: BASE_URL,
-  headers: { "Content-Type": "application/json" },
-  timeout: 15000,
-  validateStatus: (s) => s >= 200 && s < 500, // let 4xx flow into data handling
-  // Some PHP endpoints occasionally return an empty body (or non-JSON) while
-  // advertising JSON. Axios will try to JSON.parse("") and throw:
-  // "Unexpected end of JSON input". Make parsing tolerant.
+  headers: {
+    "Content-Type": "application/json",
+    Accept: "application/json",
+  },
+  timeout: 30000,
+
+  // Let axios throw real errors for 4xx / 5xx
+  validateStatus: (status) => status >= 200 && status < 300,
+
   transformResponse: [
     (data) => {
       if (data == null) return null;
       if (typeof data !== "string") return data;
+
       const trimmed = data.trim();
       if (!trimmed) return null;
+
       try {
         return JSON.parse(trimmed);
       } catch {
@@ -27,164 +32,164 @@ const api = axios.create({
 
 function normalizeApiData(data) {
   if (data == null) {
-    return { success: false, status: "error", message: "Empty response from server." };
+    return {
+      success: false,
+      status: "error",
+      message: "Empty response from server.",
+    };
   }
 
   if (typeof data === "string") {
-    const msg = data.trim() || "Empty response from server.";
-    return { success: false, status: "error", message: msg, raw: data };
+    return {
+      success: false,
+      status: "error",
+      message: data.trim() || "Empty response from server.",
+      raw: data,
+    };
   }
 
   return data;
 }
 
+function isSuccessResponse(data) {
+  return (
+    data?.success === true ||
+    data?.status === true ||
+    data?.status === "success" ||
+    data?.status === "Success"
+  );
+}
+
+function getApiErrorMessage(err) {
+  return (
+    err?.response?.data?.message ||
+    err?.response?.data?.error ||
+    err?.response?.data?.msg ||
+    err?.message ||
+    "Something went wrong. Please try again later."
+  );
+}
+
 /**
  * POST enquiry form data to send-enquiry.php
- * @param {object} formData - The enquiry form data
- * @returns {Promise<object>} - Response from the API
  */
 export const postEnquiry = async (formData) => {
   try {
-    const { data } = await api.post(`/send-enquiry.php`, formData);
-    return normalizeApiData(data);
-  } catch (error) {
-    // Optionally handle and format the error
-    throw error.response?.data || error;
+    const { data: rawData } = await api.post("/send-enquiry.php", formData);
+    const data = normalizeApiData(rawData);
+    return data;
+  } catch (err) {
+    throw new Error(getApiErrorMessage(err));
   }
 };
 
-// export const contactEnquiry = async (formData) => {
-//   try {
-//     const response = await axios.post(`${BASE_URL}/contact-enquiry.php`, formData, {
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//     });
-
-//     if (response.data.success) {
-//       return response.data;
-//     } else {
-//       throw new Error(response.data.error || "Unknown error");
-//     }
-//   } catch (error) {
-//     throw {
-//       error: error?.response?.data?.error || "Something went wrong. Please try again later.",
-//     };
-//   }
-// };
-
+/**
+ * POST contact form data to contact-enquiry.php
+ */
 export const contactEnquiry = async (payload) => {
   try {
-    const { data: rawData } = await api.post(`/contact-enquiry.php`, payload);
+    const { data: rawData } = await api.post("/contact-enquiry.php", payload);
     const data = normalizeApiData(rawData);
 
-    // Accept either shape: { status: "success", message } OR { success: true, message }
-    const isOk =
-      (typeof data?.status === "string" &&
-        data.status.toLowerCase() === "success") ||
-      data?.success === true;
-
-    if (!isOk) {
-      const msg = data?.message || data?.error || "Unknown error";
-      throw new Error(msg);
+    if (!isSuccessResponse(data)) {
+      throw new Error(data?.message || data?.error || "Contact submission failed.");
     }
 
-    // Success: return entire data so caller can read data.message
     return data;
   } catch (err) {
-    const msg =
-      err?.response?.data?.message ||
-      err?.response?.data?.error ||
-      err?.message ||
-      "Something went wrong. Please try again later.";
-    throw new Error(msg);
+    throw new Error(getApiErrorMessage(err));
   }
 };
 
+/**
+ * POST careers form data to careers.php
+ * Uses native fetch for better debugging after Next.js static export migration.
+ */
 export const careersData = async (payload) => {
   try {
-    const { data: rawData } = await api.post(`/careers.php`, payload);
-    const data = normalizeApiData(rawData);
+    const response = await fetch(`${BASE_URL}/careers.php`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
 
-    // Accept either shape: { status: "success", message } OR { success: true, message }
-    const isOk =
-      (typeof data?.status === "string" &&
-        data.status.toLowerCase() === "success") ||
-      data?.success === true;
+    const responseText = await response.text();
 
-    if (!isOk) {
-      const msg = data?.message || data?.error || "Unknown error";
-      throw new Error(msg);
+    let data;
+    try {
+      data = responseText ? JSON.parse(responseText) : null;
+    } catch {
+      data = {
+        success: false,
+        status: "error",
+        message: responseText || "Invalid server response.",
+        raw: responseText,
+      };
     }
 
-    // Success: return entire data so caller can read data.message
-    return data;
+    console.log("Careers API status:", response.status);
+    console.log("Careers API response:", data);
+
+    if (!response.ok) {
+      throw new Error(
+        data?.message ||
+          data?.error ||
+          `Careers API failed with status ${response.status}`
+      );
+    }
+
+    const normalizedData = normalizeApiData(data);
+
+    if (!isSuccessResponse(normalizedData)) {
+      throw new Error(
+        normalizedData?.message ||
+          normalizedData?.error ||
+          "Career application submission failed."
+      );
+    }
+
+    return normalizedData;
   } catch (err) {
-    const msg =
-      err?.response?.data?.message ||
-      err?.response?.data?.error ||
-      err?.message ||
-      "Something went wrong. Please try again later.";
-    throw new Error(msg);
+    console.error("Careers API Error:", err);
+    throw new Error(err?.message || "Career application submission failed.");
   }
 };
 
-
-
+/**
+ * POST individual form data to individual.php
+ */
 export const individualData = async (payload) => {
   try {
-    const { data: rawData } = await api.post(`/individual.php`, payload);
+    const { data: rawData } = await api.post("/individual.php", payload);
     const data = normalizeApiData(rawData);
 
-    // Accept either shape: { status: "success", message } OR { success: true, message }
-    const isOk =
-      (typeof data?.status === "string" &&
-        data.status.toLowerCase() === "success") ||
-      data?.success === true;
-
-    if (!isOk) {
-      const msg = data?.message || data?.error || "Unknown error";
-      throw new Error(msg);
+    if (!isSuccessResponse(data)) {
+      throw new Error(data?.message || data?.error || "Individual submission failed.");
     }
 
-    // Success: return entire data so caller can read data.message
     return data;
   } catch (err) {
-    const msg =
-      err?.response?.data?.message ||
-      err?.response?.data?.error ||
-      err?.message ||
-      "Something went wrong. Please try again later.";
-    throw new Error(msg);
+    throw new Error(getApiErrorMessage(err));
   }
 };
 
+/**
+ * POST institution form data to institution.php
+ */
 export const InstitutionData = async (payload) => {
   try {
-    const { data: rawData } = await api.post(`/institution.php`, payload);
+    const { data: rawData } = await api.post("/institution.php", payload);
     const data = normalizeApiData(rawData);
 
-    // Accept either shape: { status: "success", message } OR { success: true, message }
-    const isOk =
-      (typeof data?.status === "string" &&
-        data.status.toLowerCase() === "success") ||
-      data?.success === true;
-
-    if (!isOk) {
-      const msg = data?.message || data?.error || "Unknown error";
-      throw new Error(msg);
+    if (!isSuccessResponse(data)) {
+      throw new Error(data?.message || data?.error || "Institution submission failed.");
     }
 
-    // Success: return entire data so caller can read data.message
     return data;
   } catch (err) {
-    const msg =
-      err?.response?.data?.message ||
-      err?.response?.data?.error ||
-      err?.message ||
-      "Something went wrong. Please try again later.";
-    throw new Error(msg);
+    throw new Error(getApiErrorMessage(err));
   }
 };
-
-

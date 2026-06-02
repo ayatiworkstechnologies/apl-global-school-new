@@ -8,7 +8,7 @@ const tabs = [
   { id: "non-academic", label: "Non - Academic" },
 ];
 
-const CareersPages = () => {
+const careersPages = () => {
   const [activeTab, setActiveTab] = useState("academic");
    
 
@@ -58,4 +58,4 @@ const CareersPages = () => {
   );
 };
 
-export default CareersPages;
+export default careersPages;

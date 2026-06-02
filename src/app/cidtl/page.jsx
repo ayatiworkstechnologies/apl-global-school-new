@@ -1,6 +1,6 @@
 "use client";
 
-import Cidtl from "@/pages/Careers/Cidtl";
+import Cidtl from "@/pages/careers/Cidtl";
 
 
 

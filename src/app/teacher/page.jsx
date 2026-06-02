@@ -1,6 +1,6 @@
 "use client";
 
-import TeacherMentor from "@/pages/Careers/TeacherMentor";
+import TeacherMentor from "@/pages/careers/TeacherMentor";
 
 
 function Teacher() {

@@ -38,7 +38,7 @@ const Footer = () => {
               </Link>
             </li>
             <li>
-              <Link href="/careers" className="hover:text-secondary">
+              <Link href="/careers/" className="hover:text-secondary">
                 Careers
               </Link>
             </li>
@@ -49,7 +49,7 @@ const Footer = () => {
             </li>
           </ul>
 
-          {/* âœ… Social Media */}
+          {/*  Social Media */}
           <div className="flex justify-center gap-4">
             <a
               href="https://facebook.com/aplglobalschool/"
