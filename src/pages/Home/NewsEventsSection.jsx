@@ -267,7 +267,7 @@ export default function NewsEventsTabs() {
                 swiper.params.navigation.prevEl = prevRef.current;
                 swiper.params.navigation.nextEl = nextRef.current;
               }}
-              navigation={{ prevEl: prevRef.current, nextEl: nextRef.current }}
+              navigation={{}}
               className="pb-12"
             >
               {data[activeTab].map((item, i) => (

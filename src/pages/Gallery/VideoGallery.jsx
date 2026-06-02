@@ -63,14 +63,7 @@ const videos = [
     title: "Ms Sarija Santhosh on flexi time for teachers",
     src: "https://www.youtube.com/embed/hKStTWTi_Pg",
   },
-  {
-    title: "Ms Mala Rao on the Good citizenship programme (GCP)",
-    src: "https://www.youtube.com/embed/Ugb2u_rMm2c",
-  },
-  {
-    title: "A timelapse video – A fundraiser on autism awareness",
-    src: "https://www.youtube.com/embed/cDMMoavadg4",
-  },
+
 
 ];
 

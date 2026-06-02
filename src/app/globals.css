@@ -1,11 +1,11 @@
-@config "../../tailwind.config.js";
 @import url("https://fonts.googleapis.com/css2?family=YourFont&display=swap");
+
 @import "tailwindcss";
 @import "swiper/css";
 @import "swiper/css/navigation";
 @import "swiper/css/pagination";
 
-
+/* Fonts */
 @font-face {
   font-family: "Agatho";
   src: url("/assets/fonts/Agatho_Bold.otf") format("opentype");
@@ -18,17 +18,38 @@
   font-display: swap;
 }
 
+/* Theme */
+@theme {
+  --font-primary: "Agatho", serif;
+  --font-secondary: "Gill Sans", sans-serif;
+
+  --color-background: #ffffff;
+  --color-foreground: #171717;
+  --color-primary: #8167a0;
+  --color-secondary: #c3d452;
+  --color-third: #7b4495;
+
+  --text-h1: 48px;
+  --text-h1--line-height: 1.2;
+  --text-h2: 36px;
+  --text-h2--line-height: 1.3;
+  --text-h3: 30px;
+  --text-h3--line-height: 1.3;
+  --text-h4: 24px;
+  --text-h4--line-height: 1.3;
+  --text-h5: 20px;
+  --text-h5--line-height: 1.3;
+  --text-body: 16px;
+  --text-body--line-height: 1.6;
+  --text-bodyLg: 18px;
+  --text-bodyLg--line-height: 1.5;
+  --text-caption: 12px;
+  --text-caption--line-height: 1.5;
+}
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -38,41 +59,47 @@
   }
 }
 
+/* Base Styles */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-secondary);
 }
 
+/* Components */
 @layer components {
   .input {
     @apply w-full px-4 py-2 rounded-md bg-primary/90 placeholder-white text-white outline-none border-none focus:outline-none focus:ring-0;
   }
 }
 
+/* Custom Scrollbar */
 .custom-scrollbar::-webkit-scrollbar {
   width: 6px;
 }
+
 .custom-scrollbar::-webkit-scrollbar-thumb {
   background-color: #aaa;
   border-radius: 4px;
 }
 
-.group:hover .icon-chevron {
-  transform: rotate(180deg);
-}
-
+/* Hide Scrollbar */
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
 
-select {
-  outline: none;
+/* Hover Effects */
+.group:hover .icon-chevron {
+  transform: rotate(180deg);
 }
+
+/* Form Elements */
+select,
 textarea {
   outline: none;
 }

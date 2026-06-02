@@ -1,7 +1,7 @@
 // Navbar.jsx
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown } from "lucide-react";
@@ -94,7 +94,7 @@ function DropdownMenu({ label, items, alignRight = false, active = false }) {
     >
       {/* Trigger */}
       <div
-        className={`flex items-center gap-1 cursor-pointer transition-colors ${
+        className={`flex items-center gap-1 cursor-pointer font-primary transition-colors ${
           active ? "text-secondary font-semibold" : "hover:text-secondary"
         }`}
       >
@@ -113,7 +113,7 @@ function DropdownMenu({ label, items, alignRight = false, active = false }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className={`absolute top-full mt-6 w-64 bg-white text-primary rounded-md shadow-2xl p-4  ${
+            className={`absolute top-full mt-6 w-64 bg-white text-primary rounded-md shadow-2xl p-4 font-secondary  ${
               alignRight ? "right-0" : "left-0"
             }`}
           >
@@ -155,11 +155,6 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
 
-  // Close mobile menu when route changes
-  useEffect(() => {
-    setMobileOpen(false);
-  }, [pathname]);
-
   // Parent active highlight if any child matches
   const isParentActive = (dropdown = []) =>
     dropdown.some((d) => !isExternal(d.path) && isActivePath(pathname, d.path));
@@ -170,7 +165,7 @@ export default function Navbar() {
   };
 
   return (
-    <header className="w-full z-50 sticky top-0">
+    <header className="w-full z-50 sticky top-0 font-secondary">
       <div className="bg-primary text-white shadow">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3">
           {/* Logo */}
@@ -179,7 +174,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex gap-6 items-center font-medium">
+          <nav className="hidden md:flex gap-6 items-center font-primary font-medium">
             {navItems.map((item, index) => {
               if (item.dropdown) {
                 const active = isParentActive(item.dropdown);
@@ -201,7 +196,7 @@ export default function Navbar() {
                     href={item.path}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-secondary"
+                    className="hover:text-secondary font-primary"
                   >
                     {item.label}
                   </a>
@@ -245,7 +240,7 @@ export default function Navbar() {
               initial={{ height: 0 }}
               animate={{ height: "auto" }}
               exit={{ height: 0 }}
-              className="md:hidden bg-primary px-4 pb-4 overflow-hidden"
+              className="md:hidden bg-primary px-4 pb-4 overflow-hidden font-secondary"
             >
               <div className="border-t border-white/30 pt-3">
                 {navItems.map((item) => {
@@ -254,7 +249,7 @@ export default function Navbar() {
                     return (
                       <details key={item.label} className="group">
                         <summary
-                          className={`flex justify-between py-2 cursor-pointer list-none ${
+                          className={`flex justify-between py-2 cursor-pointer list-none font-primary ${
                             parentActive ? "text-secondary font-semibold" : ""
                           }`}
                           // prevent page jump due to summary default focusing
