@@ -1,6 +1,6 @@
 "use client";
 
-import MySchoolGallery from "@/pages/Gallery/MySchoolGallery";
+import MySchoolGallery from "@/pages/gallery/MySchoolGallery";
 
 
 

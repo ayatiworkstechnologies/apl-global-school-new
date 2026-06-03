@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import VideoGallery from "./VideoGallery";
 import APLPODCAST from "./APLPodcast";
-import GalleryPage from "./GallerySection";
+import GalleryPage from "./gallerySection";
 
 
 export default function MySchoolGallery() {

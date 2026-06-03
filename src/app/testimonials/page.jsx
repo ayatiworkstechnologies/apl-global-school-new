@@ -1,6 +1,6 @@
 "use client";
 
-import TestimonialTabs from "@/pages/Gallery/TestimonialTabs";
+import TestimonialTabs from "@/pages/gallery/TestimonialTabs";
 
 
 
