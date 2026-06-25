@@ -2,6 +2,7 @@ import axios from "axios";
 
 const BASE_URL = "https://www.aplglobalschool.com/api";
 
+
 const api = axios.create({
   baseURL: BASE_URL,
   headers: {
@@ -106,9 +107,16 @@ export const contactEnquiry = async (payload) => {
  * Uses native fetch for better debugging after Next.js static export migration.
  */
 export const careersData = async (payload) => {
+  const url = `${BASE_URL}/careers.php`;
+
+  console.log("Careers API URL:", url);
+  console.log("Careers Payload:", payload);
+
   try {
-    const response = await fetch(`${BASE_URL}/careers.php`, {
+    const response = await fetch(url, {
       method: "POST",
+      mode: "cors",
+      cache: "no-store",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -116,45 +124,26 @@ export const careersData = async (payload) => {
       body: JSON.stringify(payload),
     });
 
-    const responseText = await response.text();
+    console.log("Careers response status:", response.status);
 
-    let data;
+    const text = await response.text();
+    console.log("Careers raw response:", text);
+
+    let data = {};
     try {
-      data = responseText ? JSON.parse(responseText) : null;
+      data = text ? JSON.parse(text) : {};
     } catch {
-      data = {
-        success: false,
-        status: "error",
-        message: responseText || "Invalid server response.",
-        raw: responseText,
-      };
+      throw new Error("Invalid JSON from PHP: " + text);
     }
-
-    console.log("Careers API status:", response.status);
-    console.log("Careers API response:", data);
 
     if (!response.ok) {
-      throw new Error(
-        data?.message ||
-          data?.error ||
-          `Careers API failed with status ${response.status}`
-      );
+      throw new Error(data?.message || "Careers API failed");
     }
 
-    const normalizedData = normalizeApiData(data);
-
-    if (!isSuccessResponse(normalizedData)) {
-      throw new Error(
-        normalizedData?.message ||
-          normalizedData?.error ||
-          "Career application submission failed."
-      );
-    }
-
-    return normalizedData;
-  } catch (err) {
-    console.error("Careers API Error:", err);
-    throw new Error(err?.message || "Career application submission failed.");
+    return data;
+  } catch (error) {
+    console.error("Careers fetch failed:", error);
+    throw error;
   }
 };
 

@@ -9,15 +9,59 @@ import StaticBanner from "../../../components/StaticBanner";
 
 const genderOptions = ["Male", "Female", "Other"];
 const countryOptions = ["India", "USA", "UK", "Australia"];
-const positionOptions = ["Teacher", "Assistant", "Administrator"];
-const qualificationOptions = ["B.Ed", "M.Ed", "Ph.D", "M.A", "B.A"];
-const experienceOptions = ["0-1 years", "1-3 years", "3-5 years", "5+ years"];
-const designationOptions = ["Senior Teacher", "Junior Teacher", "HOD"];
+
+const academicPositionOptions = [
+  "ICT/IT/Data Entry",
+  "Teacher",
+  "Assistant Teacher",
+  "Coordinator",
+  "HOD",
+];
+
+const nonAcademicPositionOptions = [
+  "IT Assistant",
+  "Admin Assistant",
+  "Office Assistant",
+  "Accounts Assistant",
+  "Transport Coordinator",
+  "Lab Assistant",
+];
+
+const gradeOptions = [
+  "Primary",
+  "Upper Primary",
+  "Lower Secondary (Gr 6 – 8)",
+  "Senior (Gr 8 – 12)",
+];
+
+const experienceOptions = [
+  "0-1 Years",
+  "1-3 Years",
+  "3-5 Years",
+  "5-10 Years",
+  "10+ Years",
+];
+
+const designationOptions = [
+  "Teacher",
+  "Senior Teacher",
+  "Assistant Teacher",
+  "Coordinator",
+  "HOD",
+  "System Engineer",
+  "IT Assistant",
+  "Admin Executive",
+];
+
 const departmentOptions = [
+  "ICT / IT",
   "Mathematics",
   "Science",
   "English",
   "Social Studies",
+  "Administration",
+  "Accounts",
+  "Transport",
 ];
 
 const slides = [
@@ -31,6 +75,7 @@ const AcademicForm = () => {
   const [roleType, setRoleType] = useState("Academic");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedFileName, setSelectedFileName] = useState("No file chosen");
+  const [resumeFile, setResumeFile] = useState(null);
 
   const {
     register,
@@ -43,18 +88,29 @@ const AcademicForm = () => {
     defaultValues: {
       fname: "",
       dob: "",
+      age: "",
       gender: "",
       phone: "",
       email: "",
       language: "",
       country: "",
       address: "",
+
+      roleType: "Academic",
       position: "",
-      gread: "",
-      currentDesignation: "",
       department: "",
+      gread: "",
+      additionalSubjects: "",
+
+      organisationName: "",
+      organisationDesignation: "",
+      organisationExperience: "",
+
+      currentDesignation: "",
       experienceYear: "",
-      qualifications: "",
+
+      academicQualifications: "",
+      professionalQualifications: "",
       personalQualifications: "",
       workExperience: "",
       responsibilities: "",
@@ -63,40 +119,59 @@ const AcademicForm = () => {
       goals: "",
       reasons: "",
       otherNotes: "",
+
       ref1Name: "",
       ref1Number: "",
       ref1Email: "",
       ref2Name: "",
       ref2Number: "",
       ref2Email: "",
+
       resume: null,
     },
   });
 
-  const inputClass = "input";
+  const inputClass =
+    "input w-full px-4 py-3 rounded-md bg-white text-black border border-gray-300 focus:outline-none focus:ring-2 focus:ring-secondary";
+
+  const labelClass = "block mb-2 text-sm font-medium text-white";
 
   const renderError = (field) =>
     errors[field] && (
-      <p className="text-secondary text-sm mt-1">{errors[field].message}</p>
+      <p className="text-secondary text-sm mt-1">
+        {errors[field]?.message}
+      </p>
     );
 
-  const renderInput = (label, name, type = "text") => (
+  const renderInput = (label, name, type = "text", required = true) => (
     <div>
-      <label>{label}</label>
+      <label className={labelClass}>{label}</label>
       <input
         type={type}
-        {...register(name, { required: `${label} is required` })}
+        {...register(name, required ? { required: `${label} is required` } : {})}
         className={inputClass}
       />
       {renderError(name)}
     </div>
   );
 
-  const renderSelect = (label, name, options) => (
+  const renderTextarea = (label, name, required = true) => (
     <div>
-      <label>{label}</label>
+      <label className={labelClass}>{label}</label>
+      <textarea
+        {...register(name, required ? { required: `${label} is required` } : {})}
+        className={inputClass}
+        rows={3}
+      />
+      {renderError(name)}
+    </div>
+  );
+
+  const renderSelect = (label, name, options, required = true) => (
+    <div>
+      <label className={labelClass}>{label}</label>
       <select
-        {...register(name, { required: `${label} is required` })}
+        {...register(name, required ? { required: `${label} is required` } : {})}
         className={inputClass}
       >
         <option value="">Select {label}</option>
@@ -110,19 +185,37 @@ const AcademicForm = () => {
     </div>
   );
 
+  const handleRoleChange = (value) => {
+    setRoleType(value);
+    setValue("roleType", value);
+
+    setValue("position", "");
+    setValue("department", "");
+    setValue("gread", "");
+    setValue("additionalSubjects", "");
+    setValue("currentDesignation", "");
+    setValue("experienceYear", "");
+  };
+
+  const fileToBase64 = (file) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = () => reject(new Error("Unable to read the selected file."));
+
+      reader.readAsDataURL(file);
+    });
+
   const onSubmit = async (data) => {
-    const file = data.resume;
+    console.log("FORM SUBMITTED:", data);
+
+    const file = resumeFile;
 
     if (!file) {
       toast.error("Resume is required");
+      console.log("Resume missing");
       return;
-    }
-
-    if (roleType === "Academic") {
-      if (!data.position || !data.department) {
-        toast.error("Position and Department are required.");
-        return;
-      }
     }
 
     const validTypes = [
@@ -133,78 +226,79 @@ const AcademicForm = () => {
 
     if (!validTypes.includes(file.type)) {
       toast.error("Invalid file type. Upload PDF or Word files.");
+      console.log("Invalid file type:", file.type);
       return;
     }
 
-    const maxFileSize = 5 * 1024 * 1024;
-
-    if (file.size > maxFileSize) {
+    if (file.size > 5 * 1024 * 1024) {
       toast.error("File size should be below 5MB.");
+      console.log("File too large:", file.size);
       return;
     }
 
     setIsSubmitting(true);
 
-    const reader = new FileReader();
+    try {
+      const resumeBase64 = await fileToBase64(file);
+      const { resume, ...cleanData } = data;
 
-    reader.onload = async () => {
-      try {
-        const { resume, ...cleanData } = data;
+      const payload = {
+        ...cleanData,
+        roleType,
 
-        const payload = {
-          ...cleanData,
+        position: cleanData.position || "",
+        department:
+          roleType === "Academic"
+            ? cleanData.department || ""
+            : cleanData.department || "Non-Academic",
 
-          // Backend requires these fields always
-          position:
-            roleType === "Academic"
-              ? cleanData.position || ""
-              : "Non-Academic",
+        gread: roleType === "Academic" ? cleanData.gread || "" : "",
+        additionalSubjects:
+          roleType === "Academic" ? cleanData.additionalSubjects || "" : "",
 
-          department:
-            roleType === "Academic"
-              ? cleanData.department || ""
-              : "Non-Academic",
+        currentDesignation: cleanData.currentDesignation || "",
+        experienceYear: cleanData.experienceYear || "",
 
-          // Academic-only fields
-          gread: roleType === "Academic" ? cleanData.gread || "" : "",
-          currentDesignation:
-            roleType === "Academic" ? cleanData.currentDesignation || "" : "",
-          experienceYear:
-            roleType === "Academic" ? cleanData.experienceYear || "" : "",
+        organisationName: cleanData.organisationName || "",
+        organisationDesignation: cleanData.organisationDesignation || "",
+        organisationExperience: cleanData.organisationExperience || "",
 
-          resume_base64: reader.result,
-          resumeName: file.name,
-          roleType,
-          date: new Date().toLocaleDateString("en-IN"),
-        };
+        academicQualifications: cleanData.academicQualifications || "",
+        professionalQualifications: cleanData.professionalQualifications || "",
+        personalQualifications: cleanData.personalQualifications || "",
 
-        console.log("Career payload:", payload);
+        resume_base64: resumeBase64,
+        resumeName: file.name,
+        date: new Date().toLocaleDateString("en-IN"),
+      };
 
-        const result = await careersData(payload);
+      console.log("CAREERS API WILL HIT NOW");
+      console.log("Career payload:", payload);
 
-        toast.success(result?.message || "Application submitted successfully");
+      const result = await careersData(payload);
 
-        reset();
-        setSelectedFileName("No file chosen");
+      console.log("CAREERS API RESULT:", result);
 
-        const fileInput = document.getElementById("resume");
-        if (fileInput) {
-          fileInput.value = "";
-        }
-      } catch (error) {
-        console.error("Career form error:", error);
-        toast.error(error?.message || error?.error || "Submission failed");
-      } finally {
-        setIsSubmitting(false);
-      }
-    };
+      toast.success(result?.message || "Application submitted successfully");
 
-    reader.onerror = () => {
+      reset();
+      setRoleType("Academic");
+      setResumeFile(null);
+      setSelectedFileName("No file chosen");
+
+      const fileInput = document.getElementById("resume");
+      if (fileInput) fileInput.value = "";
+    } catch (error) {
+      console.error("Career form error:", error);
+      toast.error(error?.message || error?.error || "Submission failed");
+    } finally {
       setIsSubmitting(false);
-      toast.error("Unable to read the selected file.");
-    };
+    }
+  };
 
-    reader.readAsDataURL(file);
+  const onInvalid = (formErrors) => {
+    console.log("FORM VALIDATION ERRORS:", formErrors);
+    toast.error("Please fill all required fields.");
   };
 
   return (
@@ -222,41 +316,90 @@ const AcademicForm = () => {
 
             <select
               value={roleType}
-              onChange={(e) => setRoleType(e.target.value)}
-              className="input"
+              onChange={(e) => handleRoleChange(e.target.value)}
+              className={inputClass}
             >
               <option value="Academic">Academic</option>
               <option value="Non-Academic">Non-Academic</option>
             </select>
           </div>
 
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {renderInput("Full Name", "fname")}
-              {renderInput("Date of Birth", "dob", "date")}
-              {renderSelect("Gender", "gender", genderOptions)}
-              {renderInput("Phone", "phone")}
-              {renderInput("Email", "email", "email")}
-              {renderInput("Languages Known", "language")}
-              {renderSelect("Country", "country", countryOptions)}
+          <form
+            onSubmit={handleSubmit(onSubmit, onInvalid)}
+            className="space-y-8"
+          >
+            <div>
+              <h3 className="text-xl font-semibold text-secondary mb-4">
+                General Information
+              </h3>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {renderInput("Full Name", "fname")}
+                {renderInput("Date of Birth", "dob", "date")}
+                {renderInput("Age", "age", "number")}
+                {renderSelect("Gender", "gender", genderOptions)}
+                {renderInput("Phone Number", "phone")}
+                {renderInput("Primary Email Id", "email", "email")}
+                {renderInput("Languages Known", "language")}
+                {renderSelect("Country", "country", countryOptions)}
+              </div>
+
+              <div className="mt-4">{renderTextarea("Address", "address")}</div>
             </div>
 
             <div>
-              <label>Address</label>
-              <textarea
-                {...register("address", { required: "Address is required" })}
-                rows={2}
-                className={inputClass}
-              />
-              {renderError("address")}
+              <h3 className="text-xl font-semibold text-secondary mb-4">
+                Position Applied For
+              </h3>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {renderSelect(
+                  "I wish to apply",
+                  "position",
+                  roleType === "Academic"
+                    ? academicPositionOptions
+                    : nonAcademicPositionOptions
+                )}
+
+                {roleType === "Academic" &&
+                  renderSelect("Department", "department", departmentOptions)}
+
+                {roleType === "Academic" &&
+                  renderSelect("Grade Levels", "gread", gradeOptions)}
+              </div>
+
+              {roleType === "Academic" && (
+                <div className="mt-4">
+                  {renderTextarea(
+                    "Subjects I can additionally teach are",
+                    "additionalSubjects",
+                    false
+                  )}
+                </div>
+              )}
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold text-secondary mb-4">
+                Previous / Current Organisation
+              </h3>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {renderInput("Name of Organisation", "organisationName")}
+                {renderInput("Designation", "organisationDesignation")}
+                {renderSelect(
+                  "Work Experience",
+                  "organisationExperience",
+                  experienceOptions
+                )}
+              </div>
             </div>
 
             {roleType === "Academic" && (
-              <>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  {renderSelect("Position", "position", positionOptions)}
-                  {renderSelect("Grade Level", "gread", qualificationOptions)}
-                </div>
+              <div>
+                <h3 className="text-xl font-semibold text-secondary mb-4">
+                  Academic Job Details
+                </h3>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   {renderSelect(
@@ -264,51 +407,92 @@ const AcademicForm = () => {
                     "currentDesignation",
                     designationOptions
                   )}
-                  {renderSelect("Department", "department", departmentOptions)}
+
                   {renderSelect(
                     "Years of Experience",
                     "experienceYear",
                     experienceOptions
                   )}
                 </div>
-              </>
+              </div>
             )}
 
-            {[
-              "qualifications",
-              "personalQualifications",
-              "workExperience",
-              "responsibilities",
-              "achievements",
-              "interests",
-              "goals",
-              "reasons",
-              "otherNotes",
-            ].map((field, i) => (
-              <div key={i}>
-                <label className="capitalize">
-                  {field.replace(/([A-Z])/g, " $1")}
-                </label>
+            <div>
+              <h3 className="text-xl font-semibold text-secondary mb-4">
+                Qualifications
+              </h3>
 
-                <textarea
-                  {...register(field, {
-                    required: `${field.replace(/([A-Z])/g, " $1")} is required`,
-                  })}
-                  className="input w-full"
-                  rows={3}
-                />
+              <div className="space-y-4">
+                {renderTextarea(
+                  "Academic Qualifications",
+                  "academicQualifications"
+                )}
 
-                {renderError(field)}
+                {renderTextarea(
+                  "Professional Qualifications",
+                  "professionalQualifications"
+                )}
+
+                {renderTextarea(
+                  "Personal Qualifications",
+                  "personalQualifications",
+                  false
+                )}
               </div>
-            ))}
+            </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {renderInput("Reference 1 Name", "ref1Name")}
-              {renderInput("Reference 1 Number", "ref1Number")}
-              {renderInput("Reference 1 Email", "ref1Email", "email")}
-              {renderInput("Reference 2 Name", "ref2Name")}
-              {renderInput("Reference 2 Number", "ref2Number")}
-              {renderInput("Reference 2 Email", "ref2Email", "email")}
+            <div>
+              <h3 className="text-xl font-semibold text-secondary mb-4">
+                Work Experience
+              </h3>
+
+              <div className="space-y-4">
+                {renderTextarea("Work Experience", "workExperience")}
+
+                {renderTextarea(
+                  "Major responsibilities in your current job",
+                  "responsibilities"
+                )}
+
+                {renderTextarea("Significant Achievements", "achievements")}
+
+                {renderTextarea(
+                  "Interests and Other Activities / Memberships",
+                  "interests"
+                )}
+
+                {renderTextarea(
+                  "What are your career aspirations and goals?",
+                  "goals"
+                )}
+
+                {renderTextarea(
+                  "What are your reasons for applying to APL?",
+                  "reasons"
+                )}
+
+                {renderTextarea(
+                  "Any other matter you want to specify",
+                  "otherNotes",
+                  false
+                )}
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold text-secondary mb-4">
+                References
+              </h3>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {renderInput("Referrer 1 Name", "ref1Name")}
+                {renderInput("Referrer 1 Phone Number", "ref1Number")}
+                {renderInput("Referrer 1 Email Id", "ref1Email", "email")}
+
+                {renderInput("Referrer 2 Name", "ref2Name")}
+                {renderInput("Referrer 2 Phone Number", "ref2Number")}
+                {renderInput("Referrer 2 Email Id", "ref2Email", "email")}
+              </div>
             </div>
 
             <div>
@@ -316,7 +500,7 @@ const AcademicForm = () => {
                 Upload Resume *
               </label>
 
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-4 flex-wrap">
                 <label
                   htmlFor="resume"
                   className="cursor-pointer flex items-center gap-2 px-4 py-2 bg-secondary text-white rounded-md hover:bg-secondary/80"
@@ -333,29 +517,36 @@ const AcademicForm = () => {
               <input
                 type="file"
                 id="resume"
-                name="resume"
                 className="hidden"
                 accept=".pdf,.doc,.docx"
                 onChange={(e) => {
-                  const file = e.target.files?.[0];
+                  const file = e.target.files?.[0] || null;
+
+                  setResumeFile(file);
 
                   if (file) {
                     setValue("resume", file, {
-                      shouldValidate: true,
+                      shouldValidate: false,
                       shouldDirty: true,
                     });
 
                     clearErrors("resume");
                     setSelectedFileName(file.name);
+                    console.log("Resume selected:", file);
+                  } else {
+                    setValue("resume", null);
+                    setSelectedFileName("No file chosen");
                   }
                 }}
               />
+
+              {renderError("resume")}
             </div>
 
             <button
               type="submit"
               disabled={isSubmitting}
-              className="bg-secondary hover:bg-secondary/80 disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold py-2 px-6 rounded"
+              className="bg-secondary hover:bg-secondary/80 disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold py-3 px-8 rounded"
             >
               {isSubmitting ? "Submitting..." : "Apply Now"}
             </button>
