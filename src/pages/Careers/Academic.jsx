@@ -284,11 +284,7 @@ const AcademicForm = () => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {renderInput("Name of Organisation", "organisationName")}
                 {renderInput("Designation", "organisationDesignation")}
-                {renderSelect(
-                  "Work Experience",
-                  "organisationExperience",
-                  experienceOptions
-                )}
+                {renderInput("Experience (years/months)", "organisationExperience")}
               </div>
             </div>
 
@@ -298,13 +294,7 @@ const AcademicForm = () => {
               </h3>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {renderSelect(
-                  "I wish to apply",
-                  "position",
-                  roleType === "Academic"
-                    ? academicPositionOptions
-                    : nonAcademicPositionOptions
-                )}
+                {renderInput("I wish to apply", "position")}
 
                 {roleType === "Academic" &&
                   renderSelect("Grade Levels", "gread", gradeOptions)}
