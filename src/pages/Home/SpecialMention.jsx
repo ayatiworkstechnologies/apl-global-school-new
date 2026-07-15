@@ -6,6 +6,16 @@ import { IoClose } from "react-icons/io5";
 
 /* ---------- Default Items ---------- */
 const DEFAULT_ITEMS = [
+  {
+   src: "/assets/ruhan-1.png",
+    popupSrc: "/assets/ruhan.jpg",
+    alt: "Ruhan Siddanth",
+    para: "Ruhan Siddhanth of Grade 8 on winning a Silver Medal",
+    title: [
+      "The District Regional Cycling Championship 2026 concluded successfully with enthusiastic participation from cyclists across Tamil Nadu. From an inspiring flag-off to thrilling races and deserving podium finishes, the championship reflected TNCA’s continued commitment to grassroots development, talent identification, and sporting excellence.",
+      "Congratulations to Ruhan Siddhanth of Grade 8 on winning a Silver Medal in the Championship.",
+    ],
+  },
 {
   src: "/assets/nisha.png",
   popupSrc: "/assets/nisha-popup.png",

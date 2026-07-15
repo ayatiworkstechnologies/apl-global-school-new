@@ -18,7 +18,7 @@ const customCards = [
     target: "_blank", 
   },
  
-  { date: "18th & 19th July, 2025", title: "APL MUN\n2024", href: "/assets/pdf/APL-MUN.pdf",
+  { date: "11th and 12th July 2026", title: "APL MUN\n2026", href: "/assets/pdf/apl-mun-26.pdf",
     target: "_blank",
    },
   { date: "21st July 2023", title: "ENGLISH FESTIVITAS 2023", href: "/assets/pdf/Inglish-festival.pdf", target: "_blank", },
