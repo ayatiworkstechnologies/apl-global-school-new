@@ -7,6 +7,20 @@ import { IoClose } from "react-icons/io5";
 /* ---------- Default Items ---------- */
 const DEFAULT_ITEMS = [
   {
+  src: "/assets/nisha-26.png",
+  popupSrc: "/assets/nisha-pop.png",
+  alt: "Youngest Seven Summits Climber - Nisha",
+  para: "Scaling of Mt Everest - May 2026",
+  title: [
+  "Nisha Sasikumar has had the extraordinary privilege of representing India on the global stage through high-altitude mountaineering while continuing her academic journey at APL Global School.",
+   "She has successfully summited Mount Everest, Aconcagua, Mount Elbrus, Mount Kilimanjaro, Carstensz Pyramid, and Mount Kosciuszko, and is steadily progressing towards completing the prestigious Seven Summits Challenge—an achievement reserved for a select group of mountaineers worldwide.",
+    "Throughout this remarkable journey, Nisha has balanced the demands of her academic responsibilities with intensive training and challenging international expeditions, exemplifying resilience, discipline, perseverance, and unwavering determination.",
+    "We are immensely proud of Nisha's achievements and wish her many more milestones and accolades as she continues to pursue her passion for mountaineering, inspiring young people to dream big, embrace challenges, and reach new heights.",
+    
+  ]
+
+},
+  {
    src: "/assets/ruhan-1.png",
     popupSrc: "/assets/ruhan.jpg",
     alt: "Ruhan Siddanth",
