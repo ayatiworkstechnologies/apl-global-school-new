@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Facebook, Instagram, Linkedin, MessageCircle } from "lucide-react";
 
 const Footer = () => {
@@ -96,12 +97,24 @@ const Footer = () => {
       <div className="bg-[url('/bg-footer.svg')] bg-cover bg-center lg:h-7 md:h-7 h-4"></div>
 
       {/* âœ… Bottom Copyright */}
-      <div className="bg-primary p-4 text-center">
-        <p className="text-sm font-semibold text-white">
-          Copyright &copy; {new Date().getFullYear()}. APL Global School | All
-          Rights Reserved
-        </p>
-      </div>
+          <div className="bg-primary px-4 py-4">
+  <div className="flex flex-col items-center justify-center gap-2 text-center sm:flex-row sm:gap-3">
+    <p className="text-sm font-semibold text-white">
+      Copyright &copy; {new Date().getFullYear()}. APL Global School | All
+      Rights Reserved | Designed and Developed by{" "}
+      <a
+        href="https://www.ayatiworks.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-white  hover:text-secondary"
+      >
+        Ayatiworks
+      </a>
+    </p>
+
+    
+  </div>
+</div>
     </footer>
   );
 };
