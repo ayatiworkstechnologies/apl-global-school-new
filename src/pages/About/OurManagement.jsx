@@ -47,15 +47,15 @@ const Management = [
     ],
   },
   {
-    name: "Fiza Abubacker ",
-    position: "Head, Senior ",
-    Img: "/assets/Management/Head_Senior.png",
+    name: "Ms Gayathri Jayaraman",
+    position: "Head of School, Senior ",
+    Img: "/assets/Management/ms.png",
     bio: [
-      "Fiza Abubacker is a dedicated educator with a wealth of experience spanning various industries and roles in the realms of Telecom, banking, advertising and education. With a strong foundation in English literature and specialized training in teaching language proficiency exams like IELTS and PTE, Fiza brings a unique skill set to the classroom.",
-      "Her journey at APL reflects a story of continuous growth and development, from her initial role as a faculty member to her current position as the Head of School. She is also a Certified Cambridge International Trainer with extensive experience conducting subject-specific professional development programmes for teachers across the country. Over the years, she has had the privilege of working with educators from diverse schools, helping them develop a deeper understanding of the Cambridge curriculum, strengthen assessment literacy, and adopt learner-centred pedagogical approaches that foster meaningful learning.",
-      "Her impact extends beyond her credentials and professional progression. She believes that ‘A Teacher’s impact lasts a Lifetime’. Her friendly and helpful personality has left a lasting impression on her students, inspiring them to excel. Fiza doesn’t just teach English; she inspires students to be better communicators and lifelong learners. Her friendly demeanor and genuine interest in her students make learning a joyous experience.",
-      "Fiza Abubacker’s journey at APL is not only marked by professional growth but also by the positive impact she has had on her students’ lives. Her commitment to fostering a supportive learning environment underscores her dedication to education and student success. As she continues her pursuit of excellence, Fiza’s influence will undoubtedly continue to shape the minds and hearts of future students.",
-      "She strongly believes in Inclusion and is of the opinion that every child is unique. It is our responsibility as educators to bring out the best in them.",
+      "‘Sapere Aude’— Latin for 'dare to know' — is the principle that has quietly guided Gayathri through nearly a decade and a half in education, and continues to shape the way she leads today.",
+      "Long before she stepped into a classroom of her own, Gayathri was working in education counselling, walking alongside students as they navigated the hopes, nerves, and big decisions of securing a place at universities in the UK and the US. That early experience left her with a lasting empathy for young people at moments of change, a quality that has stayed with her ever since. Gayathri holds a Master's degree in Broadcast Journalism (UK), a Bachelor's degree in English Literature, a B.Ed in English, and is a certified CIDTL (Cambridge International Diploma in Teaching and Learning) holder. Her dedication to her students and her craft was recognised early on, when she received the Best Teacher Award from the Times of India as part of its '30 under 30' initiative.",
+      "Gayathri's journey at APL Global School began in 2019, when she joined as an English teacher and mentor. She went on to take on the role of English Coordinator for the Lower Secondary school and was later appointed and accredited as Programme Leader for CIDTL, where she has loved guiding fellow educators through Cambridge's professional development qualifications.",
+      "As Head of Senior School, Gayathri leads with three principles close to her heart: creating an environment where every student feels seen, represented, and valued; nurturing a strong sense of school spirit and community; and weaving critical thinking and life skills into everyday learning. For her, a truly future-ready student isn't just exam-ready, but a confident, curious young person equipped to meet a changing world head-on.",
+      "Outside of school, Gayathri loves keeping up with geopolitics and losing herself in books and movies on Indian and world history, alongside a genuine love of travel that keeps widening her own view of the world. It's this same spirit of curiosity — the same dare to know — that she hopes to gently instil in every student who walks through the doors of APL's Senior School.",
     ],
   },
   {

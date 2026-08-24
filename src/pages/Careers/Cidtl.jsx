@@ -332,7 +332,7 @@ function Cidtl() {
       >
         <div className="max-w-6xl mx-auto space-y-10 text-sm sm:text-base">
           <div className="space-y-4">
-            <p className="text-black font-bold font-secondary leading-relaxed">
+            <p className="text-primary font-bold font-secondary leading-relaxed">
               Cambridge International Diploma in Teaching and Learning
             </p>
             <p className="text-black font-secondary leading-relaxed">
@@ -357,7 +357,7 @@ function Cidtl() {
               This programme is planned and supervised by a certified Programme Leader. The course is available for both in-house teachers and external faculty members. Registration is open throughout the year. Individual mentoring and personalised workshops are conducted to ensure that candidates emerge successfully as reflective practitioners and inspiring world class educators. 
 
             </p>
-            <p className="text-black font-secondary leading-relaxed">
+            <p className="text-primary font-secondary leading-relaxed">
               <span className="font-bold">
                 Eligibility: As stipulated in the syllabus for 2020, 2021 and
                 2022
@@ -410,20 +410,19 @@ function Cidtl() {
             <p className="text-black font-secondary leading-relaxed">
               <span className="font-bold">Language requirements:</span> To take part in the programme candidates are required to have sufficient competence in English with a recommended minimum requirement of 5.5 on the International English Language Testing System(IELTS). 
             </p>
-            <p className="text-black font-secondary leading-relaxed">
-              Recommended duration: 4 months per module
-            </p>
+            <p className="font-secondary leading-relaxed">
+            <span className="text-primary font-secondary leading-relaxed font-bold">Recommended duration:</span> 4 months per module
+          </p>
 
-            <p className="text-black font-secondary leading-relaxed">
-              Support: The candidate will be supported by at least 50 hours of guided sessions for each module. These will be arranged during working days and over Saturdays. This format is kept flexible and asynchronous and non-traditional, with a combination of online and face-to-face sessions based on prevailing factors. Candidates will be provided with adequate support and resource materials. 
-
-            </p>
+          <p className="font-secondary leading-relaxed">
+            <span className="text-primary font-secondary leading-relaxed font-bold">Support:</span> The candidate will be supported by at least 50 hours of guided sessions for each module. These will be arranged during working days and over Saturdays. This format is kept flexible and asynchronous and non-traditional, with a combination of online and face-to-face sessions based on prevailing factors. Candidates will be provided with adequate support and resource materials.
+          </p>
             <p className="text-black font-secondary leading-relaxed">
               For further details of the course, you may access{" "}
               <a
                 className="text-primary font-bold text-lg"
                 href="https://www.cambridgeinternational.org/support-and-training-for-schools/professional-development/professional-development-qualifications/discover-our-syllabuses/"
-              >e
+              >
                 Click Here
               </a>
             </p>
@@ -431,7 +430,7 @@ function Cidtl() {
             We are deeply committed to teacher development through the CIDTL certification, equipping educators with globally recognized pedagogical expertise. With structured mentorship and dedicated time for inquiry, teachers receive personalised guidance to reflect, innovate, and refine their practice. This supportive environment empowers them to grow with confidence and make a lasting impact on student learning.
 
             </p>
-            <p className="text-black font-secondary leading-relaxed font-bold">
+            <p className="text-primary font-secondary leading-relaxed font-bold">
              We've made it easier for you to explore our programme.
             </p>
               <p className="text-black font-secondary leading-relaxed">

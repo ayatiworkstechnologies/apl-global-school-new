@@ -100,17 +100,30 @@ const Footer = () => {
           <div className="bg-primary px-4 py-4">
   <div className="flex flex-col items-center justify-center gap-2 text-center sm:flex-row sm:gap-3">
     <p className="text-sm font-semibold text-white">
-      Copyright &copy; {new Date().getFullYear()}. APL Global School | All
-      Rights Reserved | Designed and Developed by{" "}
-      <a
-        href="https://www.ayatiworks.com/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-white  hover:text-secondary"
-      >
-        Ayatiworks
-      </a>
-    </p>
+  Copyright &copy; {new Date().getFullYear()}. APL Global School | All
+  Rights Reserved | Designed and Developed by{" "}
+  <a
+    href="https://www.ayatiworks.com/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-white hover:text-secondary"
+  >
+    <span
+  className="inline-block h-10 align-middle"
+  style={{
+    width: "130px",
+    backgroundColor: "#C3D452",
+    WebkitMaskImage: "url('/assets/ayati-logo-web-no-bg.png')",
+    WebkitMaskRepeat: "no-repeat",
+   
+    WebkitMaskSize: "contain",
+    maskImage: "url('/assets/ayati-logo-web-no-bg.png')",
+    maskRepeat: "no-repeat",
+    maskSize: "contain",
+  }}
+/>
+  </a>
+</p>
 
     
   </div>
