@@ -37,7 +37,7 @@ const Management = [
   },
   {
     name: "Gomathi Prabhakar",
-    position: "Head, Teacher Mentor Centre",
+    position: "Head Senior, Teacher Mentor Centre",
     Img: "/assets/Management/Head_Teacher.png",
     bio: [
       "Gomathi Prabhakar heads the Teacher Mentor Center at APL Global School, where she plays a pivotal role in mentoring and teacher training. She believes that the well-being of a teacher plays a crucial part in building a safe and nurturing environment for their learners.",
@@ -60,7 +60,7 @@ const Management = [
   },
   {
     name: "P.M.Hajira Beevi",
-    position: "Head, NIOS ",
+    position: "Head Senior, NIOS ",
     Img: "/assets/Management/hajira.jpeg",
     bio: [
       "Driven by the belief that every learner deserves the opportunity to discover their strengths and realise their full potential, Hajira is committed to equipping students with the confidence, skills, and values needed to lead successful and fulfilling lives.",
@@ -71,7 +71,7 @@ const Management = [
   },
   {
     name: "Mahalakshmi Sankaran",
-    position: " Head, Lower Secondary",
+    position: "Head Senior, Lower Secondary",
     Img: "/assets/Management/Head_Lower.png",
     bio: [
       "‘The more I read and understand, the more certain I am that I know very little. I am still learning and better so with my students. My job here is not to help prepare my students for something but to support students prepare themselves for any challenge ahead. APL is a special place for me as the classrooms are great learning spaces for both the teacher and the student; the staff — collaborative, and the whole environment — inclusive’ ",
@@ -83,7 +83,7 @@ const Management = [
   },
   {
     name: "Jolly Francis ",
-    position: "Head, Primary ",
+    position: "Head Senior, Primary ",
     Img: "/assets/Management/Head_Primary.png",
     bio: [
       "Teaching children to count is fine, but teaching them what counts is best— This is Jolly’s mantra. A Gold medalist in post-graduate Engineering with 10-years of teaching experience, Jolly Francis’ career started as a lecturer in an Engineering college. After a stint of 3 years of developing and nurturing technical minds, she was drawn into the world of tiny tots ",
@@ -96,7 +96,7 @@ const Management = [
   },
   {
     name: "Cimpu Susana Thomas ",
-    position: "Head, Kindergarten",
+    position: "Head Senior, Kindergarten",
     Img: "/assets/Management/Head_Kindergarten.png",
     bio: [
       "John Steinbeck “Teaching is the greatest of the arts since the medium is the human mind and spirit”",
@@ -109,7 +109,7 @@ const Management = [
   },
   {
     name: "Soumya Rajan",
-    position: "Head, Kamalam",
+    position: "Head Senior, Kamalam",
     Img: "/assets/Management/Head_Kamalam.png",
     bio: [
       "“Some children don’t follow the path—they create their own. And the right guide walks beside them, not ahead.”",
