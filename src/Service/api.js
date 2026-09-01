@@ -78,6 +78,11 @@ export const postEnquiry = async (formData) => {
   try {
     const { data: rawData } = await api.post("/send-enquiry.php", formData);
     const data = normalizeApiData(rawData);
+
+    if (!isSuccessResponse(data)) {
+      throw new Error(data?.message || data?.error || "Enquiry submission failed.");
+    }
+
     return data;
   } catch (err) {
     throw new Error(getApiErrorMessage(err));
