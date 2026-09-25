@@ -35,6 +35,14 @@ const isYouTubeLink = (url) =>
   (url.includes("youtube.com") || url.includes("youtu.be"));
 
 const awards = [
+   {
+    title: "Future of Education 2026 - <br/> IIT Madras Research Park, Chennai in August 2026",
+    year: "2026",
+    description:
+      "APL Global School was honoured as among the Top 100 Schools at the Educational Conclave -  Future of Education 2026, held at the IIT Madras Research Park, Chennai in August 2026, and presented by the American World School. The recognition acknowledges APL’s commitment to supporting students in making informed academic and career choices, an area strengthened through our long-standing association with BODHI Organisation and its psychometric assessment services. We are grateful to the BODHI Organisation for recognising APL’s commitment to enabling students to make choices that are better informed, more purposeful and aligned with their individual potential.",
+    image: "/assets/fed.png",
+    link: "#",
+  },
   {
     title: "Swiss Certification Council - <br/> My Safe Spaces",
     year: "2026",
