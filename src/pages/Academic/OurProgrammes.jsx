@@ -1024,11 +1024,13 @@ function OurProgrammes() {
             {/* ✅ Left: Text Content */}
             <div className="flex-1 space-y-8">
               <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-primary font-primary border-b-2 border-secondary inline-block mb-4">
-                Adult Program
+               Young Adult Program
               </h2>
 
               <p className="text-black font-secondary text-sm sm:text-base md:text-lg leading-relaxed mb-4">
-               As per APL policy, students who turn 18 years of age before the completion of the academic year will be moved to the Adult Program. The Adult Program has been designed to enable students to complete their schooling without any interruption to their academic progression. Under this program, students will attend their academic classes from 12:30 p.m. to 2:30 p.m., Monday to Friday. 
+               In accordance with APL policy, students who turn 18 years of age before the completion of the academic year will transition to the Adult Program, effective from the day immediately following the date on which they turn 18.  They will be enrolled in APL's Adult Programme, a thoughtfully designed pathway that enables students to complete their schooling in a supportive and flexible learning environment. <br/>
+
+                The Adult Programme is designed to promote greater independence, responsibility and self-directed learning while providing continued academic guidance and individual support. Classes for both Cambridge International and NIOS students are conducted from 12:30 p.m. to 2:30 p.m., Monday to Friday, allowing students additional flexibility to pursue higher education preparation, vocational training, internships, skill development or other areas of personal interest alongside their studies.
               </p>
             </div>
 
