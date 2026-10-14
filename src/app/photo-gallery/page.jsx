@@ -1,6 +1,6 @@
 "use client";
 
-import GalleryPage from "@/pages/gallery/gallerySection";
+import GalleryPage from "@/pages/Gallery/GallerySection";
 
 
 
