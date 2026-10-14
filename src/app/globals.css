@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=YourFont&display=swap");
 
 @import "tailwindcss";
 @import "swiper/css";
@@ -47,16 +46,15 @@
   --text-caption--line-height: 1.5;
 }
 
+/* Force Light Mode on All Devices */
 :root {
+  color-scheme: light;
   --background: #ffffff;
   --foreground: #171717;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  color-scheme: light;
 }
 
 /* Base Styles */
